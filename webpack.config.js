@@ -7,10 +7,15 @@ module.exports = {
     entry: entry_path,
     output:{
         path: output_path,
-        filename:'bundle.js'
+        filename:'bundle.js',
+        publicPath: '/app/build/'
     },
+    devServer:{
+        contentBase: __dirname,
+    },
+    devtool:'source-map',
     module:{
-        loaders:[
+        loaders:[   
             { 
                 test: /\.js$/,
                 loader:'babel-loader', 
@@ -21,8 +26,9 @@ module.exports = {
             },
             {
                 test:/\.css$/,
-                use:['style-loader', 'css-loader']
+                loader:'style-loader!css-loader',
+                //use:['style-loader', 'css-loader']
             }
         ]
     }
-}
+};

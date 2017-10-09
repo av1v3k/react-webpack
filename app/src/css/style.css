@@ -2,11 +2,23 @@
     color:green;
     text-align: center;
 }
+.searhboxwrapper{
+    text-align:center;
+}
 .searchbox{
     border:0;
     outline:0;
+    display:block;
+    margin: 0 auto;
+    width:300px;
+}
+.searchbox:focus{
+    border-bottom:1px solid black;
+    transition: width 1s;
+    -moz-transition: width 1s;
+    -o-transition: width 1s;
 }
 
 body{
-    background:grey;
+    background:#FFFFFF;
 }

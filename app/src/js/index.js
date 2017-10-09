@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchBox from './Components/SearchBox';
+import styles from '../css/style.css';
 
 class Appwrapper extends React.Component{
     render(){
         return(
         <div className='innerWrapper'>
             <h3 className={this.props.class}>{this.props.title}</h3>
-            <SearchBox placeholder='Search Country'></SearchBox>
+            <SearchBox type='text' class='searchbox' placeholder='Search Countryy'></SearchBox>
         </div>
         );
     }
