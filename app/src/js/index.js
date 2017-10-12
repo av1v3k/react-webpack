@@ -4,6 +4,9 @@ import SearchBox from './Components/SearchBox';
 import styles from '../css/style.css';
 
 class Appwrapper extends React.Component{
+    constructor(props){
+        super(props);
+    }
     render(){
         return(
         <div className='innerWrapper'>

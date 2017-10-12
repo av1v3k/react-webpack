@@ -22,3 +22,5 @@
 body{
     background:#FFFFFF;
 }
+ul, li{margin:0;padding:0;}
+li{list-style-type: none;}

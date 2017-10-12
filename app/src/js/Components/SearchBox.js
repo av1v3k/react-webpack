@@ -24,13 +24,15 @@ export default class SearchBox extends React.Component{
             else
                 return false;
         });
-        this.setState({filteredCountries: resultData}, () => {
-            console.log("Selected Countries", this.state.filteredCountries);
-        });
+        if(resultData && resultData.length > 0){
+            this.setState({filteredCountries: resultData}, () => {
+                console.log("Selected Countries", this.state.filteredCountries);
+            });
+        }
     }
     getInputData(e){
         this.setState({inputData: e.currentTarget.value}, (a, b) => {
-            if(this.state.inputData && this.state.inputData !== "")
+            if(this.state.inputData !== "")
                 this.fetchData(this.state.inputData);
             else{
                 this.setState({
@@ -44,7 +46,11 @@ export default class SearchBox extends React.Component{
         return(
             <div className='searhboxWrapper'>
                 <span>{this.state.inputData}</span>
-                <input type={this.props.type} onKeyUp={this.getInputData.bind(this)} className={this.props.class} placeholder={this.props.placeholder}></input>
+                <input type={this.props.type} 
+                onKeyUp={this.getInputData.bind(this)} 
+                className={this.props.class} 
+                placeholder={this.props.placeholder}>
+                </input>
             </div>
         );
     }
