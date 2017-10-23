@@ -1,4 +1,5 @@
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var entry_path = path.resolve(__dirname, './app/src/js/index.js')
 var output_path = path.resolve(__dirname, './app/build/');
@@ -26,9 +27,19 @@ module.exports = {
             },
             {
                 test:/\.css$/,
-                loader:'style-loader!css-loader',
-                //use:['style-loader', 'css-loader']
+                //loader:'css-loader',
+                use:['css-loader']
+            },
+            {
+                test: /\.html$/,
+                exclude: path.resolve(__dirname,'./node_modules/'),
+                use: [ 'html-loader' ]
             }
         ]
-    }
+    }/*,
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './index.html'
+      })
+    ]*/
 };

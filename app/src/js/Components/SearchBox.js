@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../css/style.css';
+import ListItems from './ListItems';
 
 const countryData = [
     { 'countryName':'India', 'countryValue':'0' },
@@ -13,8 +13,13 @@ export default class SearchBox extends React.Component{
         super(props);
         this.state = {
             inputData : '',
-            filteredCountries: []
+            filteredCountries: [],
+            itemSelected: ''
         };
+        this.getInputData = this.getInputData.bind(this);
+        this.changeInputVal = this.changeInputVal.bind(this);
+        this.fetchData = this.fetchData.bind(this);
+        this.updateOnItemSelect = this.updateOnItemSelect.bind(this);
     }
     fetchData(inData){
         let resultData = [];
@@ -26,7 +31,7 @@ export default class SearchBox extends React.Component{
         });
         if(resultData && resultData.length > 0){
             this.setState({filteredCountries: resultData}, () => {
-                console.log("Selected Countries", this.state.filteredCountries);
+                //console.log("Selected Countries", this.state.filteredCountries);
             });
         }
     }
@@ -42,15 +47,29 @@ export default class SearchBox extends React.Component{
         });
  
     }
+    changeInputVal(e){
+        this.setState({
+            itemSelected: e.target.value
+        })
+    }
+    updateOnItemSelect(data){
+        this.setState({
+            itemSelected: data,
+            filteredCountries: []
+        });
+    }
     render(){
         return(
             <div className='searhboxWrapper'>
-                <span>{this.state.inputData}</span>
-                <input type={this.props.type} 
+                <input 
+                value={this.state.itemSelected} 
+                type={this.props.type} 
                 onKeyUp={this.getInputData.bind(this)} 
+                onChange={this.changeInputVal}
                 className={this.props.class} 
                 placeholder={this.props.placeholder}>
                 </input>
+                <ListItems updateItem={this.updateOnItemSelect} items={this.state.filteredCountries}></ListItems>
             </div>
         );
     }
